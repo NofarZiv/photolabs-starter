@@ -1,12 +1,11 @@
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
-// import photos from "mocks/photos";
 
 
 const PhotoList = (props) => {
 
-  const { photos } = props
+  const { photos, handlingHeart } = props
 
   const items = photos.map(item => {
     return (
@@ -17,6 +16,7 @@ const PhotoList = (props) => {
         name={item.user.name}
         city={item.location.city}
         country={item.location.country}
+        handlingHeart={handlingHeart}
       />
     );
   });
