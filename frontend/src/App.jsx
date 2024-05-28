@@ -1,6 +1,6 @@
 import React from 'react';
 import PhotoList from 'components/PhotoList';
-import PhotoListItem from './components/PhotoListItem';
+import TopicList from 'components/TopicList';
 import './App.scss';
 
 
@@ -17,6 +17,7 @@ const App = () => {
     <div className="App">
       {/* {arr} */}
       <PhotoList />
+      <TopicList />
     </div>
   );
 };
