@@ -7,19 +7,19 @@ import PhotoFavButton from "./PhotoFavButton"
 
 const PhotoListItem = (props) => {
 
-  const { sampleDataForPhotoListItem } = props
+  const { imageSource, profile, name, city, country } = props
 
   
 
   return (
     <article className="photo-list__item">
       <PhotoFavButton />
-    <img className="photo-list__image" src={sampleDataForPhotoListItem.imageSource} />
+    <img className="photo-list__image" src={imageSource} />
     <div className="photo-list__user-details">
-    <img className="photo-list__user-profile" src={sampleDataForPhotoListItem.profile} />
-    <p className="photo-list__user-info"> {sampleDataForPhotoListItem.username}
+    <img className="photo-list__user-profile" src={profile} />
+    <p className="photo-list__user-info"> {name}
     </p>
-    <p className="photo-list__user-location"> {sampleDataForPhotoListItem.location.city}, {sampleDataForPhotoListItem.location.country} </p>
+    <p className="photo-list__user-location"> {city}, {country} </p>
     </div>
     </article>
   );
