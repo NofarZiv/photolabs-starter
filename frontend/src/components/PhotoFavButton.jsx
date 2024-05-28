@@ -3,11 +3,13 @@ import React, { useCallback, useState } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton() {
+function PhotoFavButton(props) {
 
   const [like, setLike] = useState(false)
   const showLike = () => {
    setLike(!like);
+
+   props.handlingHeart()
   }
 
     return (
