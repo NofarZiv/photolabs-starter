@@ -5,17 +5,19 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
 
-  const [like, setLike] = useState(false)
+  const {favorites, handlingFavorites, photoId} = props
+
+  const [like, setLike] = useState(favorites.includes(photoId))
   const showLike = () => {
    setLike(!like);
 
-   props.handlingHeart()
+   handlingFavorites(photoId)
   }
 
     return (
       <div onClick={showLike} className="photo-list__fav-icon">
         <div className="photo-list__fav-icon-svg">
-          <FavIcon like={like}/>
+          <FavIcon like={like} />
         </div>
       </div>
       
