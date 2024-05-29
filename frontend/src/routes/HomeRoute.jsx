@@ -8,17 +8,20 @@ const HomeRoute = (props) => {
 
   const { photos, topics } = props
 
-  const [heart, setHeart] = useState(0)
-  const handlingHeart = () => {
-    setHeart(heart + 1)
-    console.log(heart)
-  }
+  const [favorites, setFavorites] = useState([])
+  const handlingFavorites = (photoId) => {
+    if (favorites.includes(photoId)) {
+      setFavorites(favorites.filter(id => id !== photoId));
+    } else {
+      setFavorites([...favorites, photoId]);
+    };
+  };
 
 
   return (
     <div className="home-route">
        <TopNavigation topics={topics}/>
-       <PhotoList photos={photos} handlingHeart={handlingHeart}/>
+       <PhotoList photos={photos} favorites={favorites} handlingFavorites={handlingFavorites}/>
     </div>
   );
 };
