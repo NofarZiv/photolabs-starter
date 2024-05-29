@@ -9,9 +9,21 @@ const PhotoListItem = (props) => {
 
   const { photoId, imageSource, profile, name, city, country, handlingFavorites, favorites, showModal } = props
 
+  const handleClick = () => {
+    const photo = {
+      id: photoId,
+      imageSource: imageSource,
+      profile: profile,
+      name: name,
+      city: city,
+      country: country
+    }
+    showModal(photo)
+  }
+
 
   return (
-    <article onClick={showModal} className="photo-list__item">
+    <article onClick={handleClick} className="photo-list__item">
       <PhotoFavButton favorites={favorites} handlingFavorites={handlingFavorites} photoId={photoId}/>
     <img className="photo-list__image" src={imageSource} />
     <div className="photo-list__user-details">
