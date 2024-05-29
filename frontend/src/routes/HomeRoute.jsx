@@ -6,7 +6,7 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const { photos, topics } = props
+  const { photos, topics, showModal } = props
 
   const [favorites, setFavorites] = useState([])
   const handlingFavorites = (photoId) => {
@@ -21,7 +21,7 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
        <TopNavigation topics={topics} favorites={favorites} />
-       <PhotoList photos={photos} favorites={favorites} handlingFavorites={handlingFavorites}/>
+       <PhotoList photos={photos} favorites={favorites} handlingFavorites={handlingFavorites} showModal={showModal}/>
     </div>
   );
 };
