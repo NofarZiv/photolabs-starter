@@ -5,7 +5,7 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
 
-  const { photos, handlingFavorites, favorites } = props
+  const { photos, handlingFavorites, favorites, showModal } = props
 
   const items = photos.map(item => {
     return (
@@ -19,6 +19,7 @@ const PhotoList = (props) => {
         favorites={favorites} 
         handlingFavorites={handlingFavorites}
         photoId={item.id}
+        showModal={showModal}
       />
     );
   });
