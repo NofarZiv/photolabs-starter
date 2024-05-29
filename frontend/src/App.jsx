@@ -11,11 +11,14 @@ const App = () => {
   const showModal = () => {
     setModal(!modal)
   }
+  const closeModal = () => {
+    setModal(modal === false)
+  }
 
   return (
     <div className="App">
       <HomeRoute topics={topics} photos={photos} showModal={showModal}/>
-      {modal === true && <PhotoDetailsModal />}
+      {modal === true && <PhotoDetailsModal closeModal={closeModal}/>}
     </div>
   );
 };
