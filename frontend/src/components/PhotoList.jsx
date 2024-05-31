@@ -7,18 +7,13 @@ const PhotoList = (props) => {
 
   const { photos, handlingFavorites, favorites, showModal } = props
 
-  const items = photos.map(item => {
+  const items = photos.map(photo => {
     return (
       <PhotoListItem
-        key={item.id}
-        imageSource={item.urls.regular}
-        profile={item.user.profile}
-        name={item.user.name}
-        city={item.location.city}
-        country={item.location.country}
+        key={photo.id}
+        photo={photo}
         favorites={favorites} 
         handlingFavorites={handlingFavorites}
-        photoId={item.id}
         showModal={showModal}
       />
     );
