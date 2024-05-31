@@ -8,15 +8,12 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
 
-  const [selectedPhoto, setSelectedPhoto] = useState(null); 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(null)
   const showModal = (photo) => {
-    setModal(!modal)
-    setSelectedPhoto(photo);
+    setModal(photo)
   }
   const closeModal = () => {
-    setModal(false)
-    setSelectedPhoto(null);
+    setModal(null)
   }
 
   const [favorites, setFavorites] = useState([])
@@ -32,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute topics={topics} photos={photos} showModal={showModal} favorites={favorites} handlingFavorites={handlingFavorites}/>
-      {modal === true && <PhotoDetailsModal closeModal={closeModal} selectedPhoto={selectedPhoto} favorites={favorites} handlingFavorites={handlingFavorites}/>}
+      {modal !== null &&  <PhotoDetailsModal closeModal={closeModal} selectedPhoto={modal} favorites={favorites} handlingFavorites={handlingFavorites}/>}
     </div>
   );
 };
