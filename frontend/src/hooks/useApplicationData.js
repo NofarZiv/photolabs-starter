@@ -1,6 +1,14 @@
 // import { useState} from "react"
 import {useReducer} from "react"
 
+export const ACTIONS = {
+  SHOW_MODAL: 'SHOW_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
+  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'
+}
+
+const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE} = ACTIONS
+
 
 function useApplicationData() {
 //   const [modal, setModal] = useState(null)
@@ -25,6 +33,7 @@ function useApplicationData() {
 //     favorites,
 //   }
 
+
 const initialState = {
   modal: null,
   favorites: [],
@@ -33,11 +42,11 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SHOW_MODAL':
+    case SHOW_MODAL:
       return { ...state, modal: action.payload };
-    case 'CLOSE_MODAL':
+    case CLOSE_MODAL:
       return { ...state, modal: null };
-    case 'TOGGLE_FAVORITE':
+    case TOGGLE_FAVORITE:
       const isFavorite = state.favorites.includes(action.payload);
       return {
         ...state,
@@ -55,15 +64,15 @@ const reducer = (state, action) => {
 
 
   const showModal = (photo) => {
-    dispatch({ type: 'SHOW_MODAL', payload: photo });
+    dispatch({ type: SHOW_MODAL, payload: photo });
   };
 
   const closeModal = () => {
-    dispatch({ type: 'CLOSE_MODAL' });
+    dispatch({ type: CLOSE_MODAL });
   };
 
   const handlingFavorites = (photoId) => {
-    dispatch({ type: 'TOGGLE_FAVORITE', payload: photoId });
+    dispatch({ type: TOGGLE_FAVORITE, payload: photoId });
   };
 
 
