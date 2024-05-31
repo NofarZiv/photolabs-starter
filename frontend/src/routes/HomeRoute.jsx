@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React from 'react';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
@@ -6,17 +6,9 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const { photos, topics, showModal } = props
+  const { photos, topics, showModal, favorites, handlingFavorites } = props
 
-  const [favorites, setFavorites] = useState([])
-  const handlingFavorites = (photoId) => {
-    if (favorites.includes(photoId)) {
-      setFavorites(favorites.filter(id => id !== photoId));
-    } else {
-      setFavorites([...favorites, photoId]);
-    };
-  };
-
+  
 
   return (
     <div className="home-route">
