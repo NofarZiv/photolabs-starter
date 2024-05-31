@@ -1,9 +1,10 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 import topics from "mocks/topics";
 import photos from "mocks/photos";
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+
 
 const App = () => {
 
@@ -18,11 +19,20 @@ const App = () => {
     setSelectedPhoto(null);
   }
 
+  const [favorites, setFavorites] = useState([])
+  const handlingFavorites = (photoId) => {
+    if (favorites.includes(photoId)) {
+      setFavorites(favorites.filter(id => id !== photoId));
+    } else {
+      setFavorites([...favorites, photoId]);
+    };
+  };
+
 
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} showModal={showModal}/>
-      {modal === true && <PhotoDetailsModal closeModal={closeModal} selectedPhoto={selectedPhoto}/>}
+      <HomeRoute topics={topics} photos={photos} showModal={showModal} favorites={favorites} handlingFavorites={handlingFavorites}/>
+      {modal === true && <PhotoDetailsModal closeModal={closeModal} selectedPhoto={selectedPhoto} favorites={favorites} handlingFavorites={handlingFavorites}/>}
     </div>
   );
 };
