@@ -1,13 +1,16 @@
 // import { useState} from "react"
-import {useReducer} from "react"
+import { useReducer, useEffect } from "react"
 
 export const ACTIONS = {
   SHOW_MODAL: 'SHOW_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
-  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'
+  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
 }
 
-const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE} = ACTIONS
+
+const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE, SET_PHOTO_DATA, SET_TOPIC_DATA} = ACTIONS
 
 
 function useApplicationData() {
@@ -34,14 +37,21 @@ function useApplicationData() {
 //   }
 
 
+
 const initialState = {
   modal: null,
   favorites: [],
+  photoData: [],
+  topicData: []
 };
 
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_PHOTO_DATA:
+      return { ...state, photoData: action.payload }
+    case SET_TOPIC_DATA:
+      return { ...state, topicData: action.payload }
     case SHOW_MODAL:
       return { ...state, modal: action.payload };
     case CLOSE_MODAL:
@@ -61,6 +71,18 @@ const reducer = (state, action) => {
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    fetch("/api/photos")
+      .then(res => res.json())
+      .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/topics")
+      .then(res => res.json())
+      .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+  }, []);
 
 
   const showModal = (photo) => {
