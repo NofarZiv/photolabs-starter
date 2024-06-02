@@ -11,8 +11,6 @@ const PhotoDetailsModal = (props) => {
 
   const { id, urls, user, location, similar_photos } = selectedPhoto
 
-  const { photo2, photo3, photo4, photo5 } = similar_photos
-  const arr = [photo2, photo3, photo4, photo5]
 
 
   return (
@@ -31,7 +29,7 @@ const PhotoDetailsModal = (props) => {
         </div>
         <h2 className="photo-details-modal__header">Similar Photos</h2>
         <div className="">
-          <PhotoList photos={arr} favorites={favorites} handlingFavorites={handlingFavorites} />
+          <PhotoList photos={similar_photos} favorites={favorites} handlingFavorites={handlingFavorites} />
         </div>
       </article>
     </div>
