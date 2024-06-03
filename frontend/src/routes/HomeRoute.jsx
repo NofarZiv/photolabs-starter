@@ -6,14 +6,14 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const { photos, topics, showModal, favorites, handlingFavorites } = props
+  const { photos, topics, showModal, favorites, handlingFavorites, handlePhotos, topicPhotos} = props
 
   
 
   return (
     <div className="home-route">
-       <TopNavigation topics={topics} favorites={favorites} />
-       <PhotoList photos={photos} favorites={favorites} handlingFavorites={handlingFavorites} showModal={showModal}/>
+       <TopNavigation topics={topics} favorites={favorites} handlePhotos={handlePhotos}/>
+       { topicPhotos !== null ? <PhotoList photos={topicPhotos} favorites={favorites} handlingFavorites={handlingFavorites} showModal={showModal}/> : <PhotoList photos={photos} favorites={favorites} handlingFavorites={handlingFavorites} showModal={showModal}/>}
     </div>
   );
 };
