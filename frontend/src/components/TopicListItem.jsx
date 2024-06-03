@@ -7,7 +7,7 @@ const TopicListItem = (props) => {
   const { id, title, handlePhotos } = props
 
   const handleClickTopic = () => {
-    handlePhotos(id)
+    handlePhotos(id);
   }
 
 

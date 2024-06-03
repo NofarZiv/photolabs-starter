@@ -1,17 +1,18 @@
 import React, { useCallback, useState } from 'react';
-
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
+
+
 
 function PhotoFavButton(props) {
 
   const {favorites, handlingFavorites, photoId} = props
 
-  const [like, setLike] = useState(favorites.includes(photoId))
+  const [like, setLike] = useState(favorites.includes(photoId));
   const showLike = () => {
    setLike(!like);
 
-   handlingFavorites(photoId)
+   handlingFavorites(photoId);
   }
 
     return (
@@ -22,7 +23,7 @@ function PhotoFavButton(props) {
       </div>
       
     );
-}
+};
 
 export default PhotoFavButton;
 
