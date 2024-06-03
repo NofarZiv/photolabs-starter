@@ -22,3 +22,9 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+## Screenshots
+
+!["Screenshot of the home page."](https://github.com/NofarZiv/photolabs-starter/blob/main/docs/home-page.png?raw=true)
+!["Screenshot of a liked photo."](https://github.com/NofarZiv/photolabs-starter/blob/main/docs/liked-photo.png?raw=true)
+!["Screenshot of photos by topic (animals)."](https://github.com/NofarZiv/photolabs-starter/blob/main/docs/photos-by-topic-animals.png?raw=true)
