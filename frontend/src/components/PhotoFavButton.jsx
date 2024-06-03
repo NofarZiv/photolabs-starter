@@ -8,9 +8,7 @@ function PhotoFavButton(props) {
 
   const {favorites, handlingFavorites, photoId} = props
 
-  const [like, setLike] = useState(favorites.includes(photoId));
   const showLike = () => {
-   setLike(!like);
 
    handlingFavorites(photoId);
   }
@@ -18,7 +16,7 @@ function PhotoFavButton(props) {
     return (
       <div onClick={showLike} className="photo-list__fav-icon">
         <div className="photo-list__fav-icon-svg">
-          <FavIcon like={like} />
+          <FavIcon like={favorites.includes(photoId)} />
         </div>
       </div>
       
