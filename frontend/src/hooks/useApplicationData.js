@@ -1,16 +1,17 @@
 // import { useState} from "react"
-import { useReducer, useEffect } from "react"
+import { useReducer, useEffect, useState} from "react"
 
 export const ACTIONS = {
   SHOW_MODAL: 'SHOW_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
   TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 }
 
 
-const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE, SET_PHOTO_DATA, SET_TOPIC_DATA} = ACTIONS
+const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE, SET_PHOTO_DATA, SET_TOPIC_DATA, GET_PHOTOS_BY_TOPICS} = ACTIONS
 
 
 function useApplicationData() {
@@ -36,13 +37,37 @@ function useApplicationData() {
 //     favorites,
 //   }
 
+const [showPhotos, setshowPhotos] = useState(null)
+  const handlePhotos = (topic_id) => {
+    setshowPhotos(topic_id) 
+  }
+
+
+useEffect(() => {
+  fetch("/api/photos")
+    .then(res => res.json())
+    .then(data => dispatch({ type: SET_PHOTO_DATA, payload: data }))
+}, []);
+
+useEffect(() => {
+  fetch("/api/topics")
+    .then(res => res.json())
+    .then(data => dispatch({ type: SET_TOPIC_DATA, payload: data }))
+}, []);
+
+useEffect(() => {
+  fetch(`/api/topics/photos/${showPhotos}`)
+   .then(res => res.json())
+   .then(data => dispatch({ type: GET_PHOTOS_BY_TOPICS, payload: data }))
+}, [showPhotos])
 
 
 const initialState = {
   modal: null,
   favorites: [],
   photoData: [],
-  topicData: []
+  topicData: [],
+  topicPhotos: []
 };
 
 
@@ -52,6 +77,8 @@ const reducer = (state, action) => {
       return { ...state, photoData: action.payload }
     case SET_TOPIC_DATA:
       return { ...state, topicData: action.payload }
+    case GET_PHOTOS_BY_TOPICS:
+      return {...state, topicPhotos: action.payload}
     case SHOW_MODAL:
       return { ...state, modal: action.payload };
     case CLOSE_MODAL:
@@ -71,18 +98,6 @@ const reducer = (state, action) => {
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    fetch("/api/photos")
-      .then(res => res.json())
-      .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/topics")
-      .then(res => res.json())
-      .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
-  }, []);
 
 
   const showModal = (photo) => {
@@ -104,6 +119,7 @@ const reducer = (state, action) => {
     showModal,
     closeModal,
     handlingFavorites,
+    handlePhotos
   }
 }
 
