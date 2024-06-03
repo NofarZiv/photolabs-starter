@@ -1,5 +1,4 @@
-// import { useState} from "react"
-import { useReducer, useEffect, useState} from "react"
+import { useReducer, useEffect, useState} from "react";
 
 export const ACTIONS = {
   SHOW_MODAL: 'SHOW_MODAL',
@@ -8,7 +7,7 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
-}
+};
 
 
 const {SHOW_MODAL, CLOSE_MODAL, TOGGLE_FAVORITE, SET_PHOTO_DATA, SET_TOPIC_DATA, GET_PHOTOS_BY_TOPICS} = ACTIONS
@@ -37,10 +36,10 @@ function useApplicationData() {
 //     favorites,
 //   }
 
-const [showPhotos, setshowPhotos] = useState(null)
+const [showPhotos, setshowPhotos] = useState(null);
   const handlePhotos = (topic_id) => {
-    setshowPhotos(topic_id) 
-  }
+    setshowPhotos(topic_id);
+  };
 
 
 useEffect(() => {
@@ -59,7 +58,7 @@ useEffect(() => {
   fetch(`/api/topics/photos/${showPhotos}`)
    .then(res => res.json())
    .then(data => dispatch({ type: GET_PHOTOS_BY_TOPICS, payload: data }))
-}, [showPhotos])
+}, [showPhotos]);
 
 
 const initialState = {
@@ -93,7 +92,7 @@ const reducer = (state, action) => {
       };
     default:
       return state;
-  }
+  };
 };
 
 
@@ -120,8 +119,8 @@ const reducer = (state, action) => {
     closeModal,
     handlingFavorites,
     handlePhotos
-  }
-}
+  };
+};
 
 
 
